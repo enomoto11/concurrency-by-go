@@ -19,8 +19,10 @@ func NewChapter3() *Chapter3 {
 // Exec
 // 当該章の処理を実行する
 func (c Chapter3) Exec() error {
-	c.chapter3_2.ClickAndBroadCastToGoroutines()
+	// c.chapter3_2.ClickAndBroadCastToGoroutines()
 	// c.chapter3_2.AddingAndRemovingQueue()
+	// c.chapter3_2.MyPool()
+	c.chapter3_2.AFewMemmoryAllocationsIsEnoughThanksToPool()
 
 	return nil
 }

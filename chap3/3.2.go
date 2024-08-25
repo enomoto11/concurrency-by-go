@@ -93,3 +93,57 @@ func (chapter3_2) ClickAndBroadCastToGoroutines() {
 	clickRegistered.Wait()
 	fmt.Println("ブロードキャスト完了")
 }
+
+// MyPool
+// p.60
+func (chapter3_2) MyPool() {
+	myPool := &sync.Pool{
+		New: func() interface{} {
+			fmt.Println("Creating new instance")
+			return struct{}{}
+		},
+	}
+
+	myPool.Get()            // ここではインスタンス生成される
+	instace := myPool.Get() // ここでもインスタンスを生成する
+	myPool.Put(instace)
+	myPool.Get() // ここではプール内に使用可能なインスタンスがあるため、生成処理Newは行われない
+}
+
+// AFewMemmoryAllocationsIsEnoughThanksToPool
+// p. 61
+func (chapter3_2) AFewMemmoryAllocationsIsEnoughThanksToPool() {
+	var numCalcsCreated int
+
+	calcPool := &sync.Pool{
+		New: func() interface{} {
+			numCalcsCreated++
+			mem := make([]byte, 1024)
+			return &mem
+		},
+	}
+
+	// 事前に4KBを確保する
+	calcPool.Put(calcPool.New())
+	calcPool.Put(calcPool.New())
+	calcPool.Put(calcPool.New())
+	calcPool.Put(calcPool.New())
+
+	const numWorkers = 1024 * 1024
+
+	var wg sync.WaitGroup
+	wg.Add(numWorkers)
+	for i := numWorkers; i > 0; i-- {
+		go func() {
+			defer wg.Done()
+
+			mem := calcPool.Get().(*[]byte)
+			defer calcPool.Put(mem) // 使用したインスタンスはpoolにputしなおす
+
+			//メモリに対して任意の処理を行う
+		}()
+	}
+
+	wg.Wait()
+	fmt.Printf("%d calcurators ware created", numCalcsCreated) // 11や12など比較的小さな結果を得る
+}
