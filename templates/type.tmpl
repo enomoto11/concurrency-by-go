@@ -1,0 +1,25 @@
+package chap{{.Chapter}}
+
+type Chapter{{.Chapter}} struct {
+	chapter{{.Chapter}}_1 *chapter{{.Chapter}}_1
+}
+
+// Number
+// 章番号を返す
+func (Chapter{{.Chapter}}) Number() int { return {{.Chapter}} }
+
+// NewChapter{{.Chapter}}
+// mainで呼び出されるファクトリ
+func NewChapter{{.Chapter}}() *Chapter{{.Chapter}} {
+	return &Chapter{{.Chapter}}{
+		chapter{{.Chapter}}_1: NewChapter{{.Chapter}}_1(),
+	}
+}
+
+// Exec
+// 当該章の処理を実行する
+func (c Chapter{{.Chapter}}) Exec() error {
+	// c.chapter{{.Chapter}}_1.hoge()
+
+	return nil
+}
