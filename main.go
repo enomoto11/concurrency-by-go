@@ -21,8 +21,10 @@ func newChapters() []Chapter {
 func main() {
 	chapters := newChapters()
 	for _, c := range chapters {
+		fmt.Println("CHAPTER", c.Number(), "------------------------")
 		if err := c.Exec(); err != nil {
 			fmt.Printf("err in chapter %d: %v\n", c.Number(), err)
 		}
+		fmt.Println("CHAPTER", c.Number(), "------------------------")
 	}
 }
