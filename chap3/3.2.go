@@ -15,6 +15,8 @@ type Button struct {
 	Clicked *sync.Cond
 }
 
+// ClickAndBroadCastToGoroutines
+// p.56
 func (chapter3_2) ClickAndBroadCastToGoroutines() {
 	type Button struct {
 		Clicked *sync.Cond
