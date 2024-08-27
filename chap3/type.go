@@ -27,7 +27,8 @@ func (c Chapter3) Exec() error {
 	// c.c3_2.AFewMemmoryAllocationsIsEnoughThanksToPool()
 	// c.c3_3.ReadAfterChannelWasClosed()
 	// c.c3_3.RangeStatementWithChannel()
-	c.c3_3.UnblockGoroutinesSimultaneously()
+	// c.c3_3.UnblockGoroutinesSimultaneously()
+	c.c3_3.EncapsulationChannelInProducerGoroutine()
 
 	return nil
 }

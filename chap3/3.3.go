@@ -64,3 +64,31 @@ func (chapter3_3) UnblockGoroutinesSimultaneously() {
 	// これはつまり、同時に複数のgoroutineを解放していることと同義となる
 	wg.Wait()
 }
+
+// EncapsulationChannelInProducerGoroutine
+// p.78
+func (chapter3_3) EncapsulationChannelInProducerGoroutine() {
+	chanOwner := func() <-chan int { // メインgoroutineに定義されている関数によってカプセル化されている
+		// カプセル化された処理の中に所有権を持つgoroutineが起動されている
+
+		stream := make(chan int, 5) // 初期化するのはgoroutineの中じゃなくていい？
+		// チャネルの所有権が存在するのは、この関数（スコープ）
+
+		go func() { // これがチャネルの所有権を持つgoroutine
+			defer close(stream)
+			for i := 0; i <= 5; i++ {
+				stream <- i
+			}
+		}()
+
+		return stream
+	}
+
+	res := chanOwner() // メインgoroutineは受信しかできない
+
+	for r := range res {
+		fmt.Printf("Recieved: %d\n", r)
+	}
+
+	fmt.Println("Done.")
+}
