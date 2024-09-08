@@ -3,6 +3,7 @@ package chap3
 type Chapter3 struct {
 	c3_2 *chapter3_2
 	c3_3 *chapter3_3
+	c3_4 *chapter3_4
 }
 
 // Number
@@ -15,6 +16,7 @@ func NewChapter3() *Chapter3 {
 	return &Chapter3{
 		c3_2: NewChapter3_2(),
 		c3_3: NewChapter3_3(),
+		c3_4: NewChapter3_4(),
 	}
 }
 
@@ -28,7 +30,9 @@ func (c Chapter3) Exec() error {
 	// c.c3_3.ReadAfterChannelWasClosed()
 	// c.c3_3.RangeStatementWithChannel()
 	// c.c3_3.UnblockGoroutinesSimultaneously()
-	c.c3_3.EncapsulationChannelInProducerGoroutine()
+	// c.c3_3.EncapsulationChannelInProducerGoroutine()
+	// c.c3_4.BasicSelect()
+	c.c3_4.ForSelectStatementWithDefault()
 
 	return nil
 }
