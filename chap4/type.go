@@ -21,7 +21,7 @@ func NewChapter4() *Chapter4 {
 // Exec
 // 当該章の処理を実行する
 func (c Chapter4) Exec() error {
-	c.c4_3.AvoidGoroutineLeakBySignalingBetweenParentAndChildGoroutines()
+	c.c4_3.AvoidBlockBySignalForDoneReadingAllValuesInChannel()
 	// fmt.Println("end execScripts num goroutine: ", runtime.NumGoroutine())
 	return nil
 }
