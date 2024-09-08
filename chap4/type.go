@@ -3,6 +3,7 @@ package chap4
 type Chapter4 struct {
 	c4_1 *chapter4_1
 	c4_3 *chapter4_3
+	c4_4 *chapter4_4
 }
 
 // Number
@@ -15,6 +16,7 @@ func NewChapter4() *Chapter4 {
 	return &Chapter4{
 		c4_1: NewChapter4_1(),
 		c4_3: NewChapter4_3(),
+		c4_4: NewChapter4_4(),
 	}
 }
 
