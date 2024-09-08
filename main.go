@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/enomoto11/concurrency-by-go/chap3"
+	"github.com/enomoto11/concurrency-by-go/chap4"
 )
 
 type Chapter interface {
@@ -12,9 +12,11 @@ type Chapter interface {
 }
 
 func newChapters() []Chapter {
-	chapter3 := chap3.NewChapter3()
+	// chapter3 := chap3.NewChapter3()
+	chapter4 := chap4.NewChapter4()
 	return []Chapter{
-		chapter3,
+		// chapter3,
+		chapter4,
 	}
 }
 
