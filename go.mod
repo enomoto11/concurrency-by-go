@@ -1,3 +1,3 @@
 module github.com/enomoto11/concurrency-by-go
 
-go 1.21.3
+go 1.23.0
